@@ -12,12 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import xhj.zime.com.criminallntent.CrimeDetail.Crime;
-import xhj.zime.com.criminallntent.CrimeDetail.CrimeActivity;
+import xhj.zime.com.criminallntent.CrimeDetail.CrimePagerActivity;
 import xhj.zime.com.criminallntent.R;
 
 public class CrimeListFragment extends Fragment {
@@ -79,7 +78,7 @@ public class CrimeListFragment extends Fragment {
             CrimeLab crimeLab = CrimeLab.get(getActivity());
             mIndex = crimeLab.getCrimeIndex(mCrime);
             //mPosition = mCrimeRecyclerView.getChildAdapterPosition(view);
-            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(),mCrime.getId());
             startActivity(intent);
         }
     }
