@@ -54,6 +54,31 @@ public class CrimePagerActivity extends AppCompatActivity implements View.OnClic
                 mViewPager.setCurrentItem(i);
             }
         }
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                if (i == 0){
+                    mJumpToFitst.setEnabled(false);
+                    mJumpToLast.setEnabled(true);
+                }else if (i == mCrimes.size() - 1){
+                    mJumpToLast.setEnabled(false);
+                    mJumpToFitst.setEnabled(true);
+                }else {
+                    mJumpToLast.setEnabled(true);
+                    mJumpToFitst.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     public static Intent newIntent(Context packageContext, UUID crimeId) {
