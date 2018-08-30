@@ -23,7 +23,8 @@ import xhj.zime.com.criminallntent.R;
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
-    private int position;
+    //private int mPosition;
+    private int mIndex;
 
     @Nullable
     @Override
@@ -48,7 +49,7 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else {
-            mAdapter.notifyItemChanged(position);
+            mAdapter.notifyItemChanged(mIndex);
         }
 
     }
@@ -75,7 +76,9 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            position = mCrimeRecyclerView.getChildAdapterPosition(view);
+            CrimeLab crimeLab = CrimeLab.get(getActivity());
+            mIndex = crimeLab.getCrimeIndex(mCrime);
+            //mPosition = mCrimeRecyclerView.getChildAdapterPosition(view);
             Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
             startActivity(intent);
         }
