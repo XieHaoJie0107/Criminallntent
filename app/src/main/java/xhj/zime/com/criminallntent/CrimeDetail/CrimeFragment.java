@@ -23,6 +23,9 @@ import xhj.zime.com.criminallntent.R;
 
 import static android.widget.CompoundButton.*;
 
+/*
+     创建次fragment只需要一个crime的id,根据id能找到这条记录,找到这条记录就能显示这条记录的相关数据
+ */
 public class CrimeFragment extends Fragment {
     private static final String ARG_CRIME_ID = "crime_id";
 
