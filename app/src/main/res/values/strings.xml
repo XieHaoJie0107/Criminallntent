@@ -6,4 +6,5 @@
     <string name="crime_solved_label">已解决</string>
     <string name="jump_to_first">第一页</string>
     <string name="jump_to_last">最后一页</string>
+    <string name="date_picker_title">Date of crime</string>
 </resources>
