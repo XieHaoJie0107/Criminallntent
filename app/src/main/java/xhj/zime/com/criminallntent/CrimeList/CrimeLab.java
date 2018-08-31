@@ -10,7 +10,7 @@ import xhj.zime.com.criminallntent.CrimeDetail.Crime;
 public class CrimeLab {
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
-        for (int i = 0; i < 100;i++){
+        for (int i = 0; i < 5;i++){
             Crime crime = new Crime();
             crime.setTitle("Crime # "+i);
             crime.setSolved(i % 2 == 0);
@@ -43,5 +43,8 @@ public class CrimeLab {
 
     public int getCrimeIndex(Crime crime){
         return mCrimes.indexOf(crime);
+    }
+    public void addCrime(Crime crime){
+        mCrimes.add(crime);
     }
 }
