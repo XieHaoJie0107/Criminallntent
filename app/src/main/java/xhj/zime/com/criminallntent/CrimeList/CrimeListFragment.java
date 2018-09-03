@@ -28,7 +28,7 @@ public class CrimeListFragment extends Fragment {
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
     //private int mPosition;
-    private int mIndex;
+//    private int mIndex;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +90,7 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
 //            mAdapter.notifyItemChanged(mIndex);
         }
@@ -121,8 +122,8 @@ public class CrimeListFragment extends Fragment {
         @Override
         public void onClick(View view) {
             CrimeLab crimeLab = CrimeLab.get(getActivity());
-            mIndex = crimeLab.getCrimeIndex(mCrime);
-            //mPosition = mCrimeRecyclerView.getChildAdapterPosition(view);
+//            mIndex = crimeLab.getCrimeIndex(mCrime);
+//            mPosition = mCrimeRecyclerView.getChildAdapterPosition(view);
             Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
             startActivity(intent);
         }
@@ -151,6 +152,10 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+        public void setCrimes(List<Crime> crimes){
+            mCrimes = crimes;
         }
     }
     private void updateSubtitle(){
