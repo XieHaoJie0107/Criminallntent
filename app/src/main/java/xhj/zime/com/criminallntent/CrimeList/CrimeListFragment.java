@@ -1,13 +1,16 @@
 package xhj.zime.com.criminallntent.CrimeList;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +30,8 @@ public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
+    private static final int REQUEST_CRIME_DELETE = 1;
+
     //private int mPosition;
 //    private int mIndex;
 
@@ -131,6 +136,7 @@ public class CrimeListFragment extends Fragment {
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
         private List<Crime> mCrimes;
+        private static final String DIALOG_CRIME_DELETE = "dialog_crime_delete";
 
         public CrimeAdapter(List<Crime> crimes) {
             mCrimes = crimes;
@@ -145,8 +151,19 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull CrimeHolder crimeHolder, int i) {
-            Crime crime = mCrimes.get(i);
+            final Crime crime = mCrimes.get(i);
             crimeHolder.bind(crime);
+            crimeHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    FragmentManager manager = getFragmentManager();
+                    CrimeDeleteFragment dialog = CrimeDeleteFragment.newInstance(crime.getId());
+                    dialog.show(manager,DIALOG_CRIME_DELETE);
+                    dialog.setTargetFragment(CrimeListFragment.this,REQUEST_CRIME_DELETE);
+                    return true;
+                }
+            });
+
         }
 
         @Override
@@ -158,6 +175,21 @@ public class CrimeListFragment extends Fragment {
             mCrimes = crimes;
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK){
+            return;
+        }
+        if (requestCode == REQUEST_CRIME_DELETE){
+            int status = data.getIntExtra(CrimeDeleteFragment.EXTRA_CRIME_DELETE_STATUS,-1);
+            if (status == CrimeDeleteFragment.CRIME_DELETE_STATUS_SUCCESS){
+                mAdapter.setCrimes(CrimeLab.get(getActivity()).getCrimes());
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
     private void updateSubtitle(){
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         int crimeCount = crimeLab.getCrimes().size();
