@@ -1,6 +1,5 @@
 package xhj.zime.com.criminallntent.CrimeDetail;
 
-import android.widget.ListView;
 
 import java.util.Date;
 import java.util.UUID;
@@ -14,6 +13,16 @@ public class Crime {
     private Date mDate;
     //问题是否得到解决
     private boolean mSolved;
+    //嫌疑人
+    private String mSuspect;
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
+    }
 
     public Crime() {
         this(UUID.randomUUID());
