@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="xhj.zime.com.criminallntent">
+    <!-- 没有这个标签,可能导致应用商城拒绝应用的安装,required代表应用是否支持那些没有这个功能的设备-->
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false"/>
 
     <application
         android:allowBackup="true"
