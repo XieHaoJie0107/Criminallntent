@@ -61,5 +61,6 @@ public class CrimeDeleteFragment extends DialogFragment {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         Crime crime = crimeLab.getCrime(mCrimeId);
         crimeLab.deleteCrime(crime);
+        crimeLab.deletePhotoFile(crime);
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -97,5 +98,15 @@ public class CrimeLab {
     public void deleteCrime(Crime crime){
         mDatabase.delete(CrimeTable.NAME,CrimeTable.Cols.UUID+" = ?"
                 ,new String[]{crime.getId().toString()});
+    }
+
+    public File getPhotoFile(Crime crime){
+        File file = mContext.getFilesDir();
+        return new File(file,crime.getPhotoFileName());
+    }
+
+    public void deletePhotoFile(Crime crime){
+        File file = getPhotoFile(crime);
+        file.delete();
     }
 }

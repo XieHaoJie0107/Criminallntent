@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 这里将文件的根目录映射为crime_photos,我们不去操作它,而是由FileProvider去操作它 -->
+    <files-path
+        name="crime_photoS"
+        path="." />
+</paths>

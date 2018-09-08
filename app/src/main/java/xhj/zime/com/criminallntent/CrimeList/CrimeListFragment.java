@@ -186,6 +186,7 @@ public class CrimeListFragment extends Fragment {
             if (status == CrimeDeleteFragment.CRIME_DELETE_STATUS_SUCCESS){
                 mAdapter.setCrimes(CrimeLab.get(getActivity()).getCrimes());
                 mAdapter.notifyDataSetChanged();
+
             }
         }
     }
