@@ -19,7 +19,7 @@ import java.util.UUID;
 import xhj.zime.com.criminallntent.CrimeList.CrimeLab;
 import xhj.zime.com.criminallntent.R;
 
-public class CrimePagerActivity extends AppCompatActivity implements View.OnClickListener {
+public class CrimePagerActivity extends AppCompatActivity implements View.OnClickListener,CrimeFragment.CallBacks {
     private ViewPager mViewPager;
     private List<Crime> mCrimes;
     private static final String EXTRA_CRIME_ID = "xhj.zime.com.criminallntent.CrimeDetail.crime_id";
@@ -101,5 +101,10 @@ public class CrimePagerActivity extends AppCompatActivity implements View.OnClic
                 mJumpToFitst.setEnabled(true);
                 break;
         }
+    }
+
+    @Override
+    public void onCrimeUpdate(Crime crime) {
+
     }
 }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--   这里是有两个界面的活动布局   -->
+    <item name="activity_masterdetail" type="layout">@layout/activity_fragment</item>
+</resources>
